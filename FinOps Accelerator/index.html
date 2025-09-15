@@ -1,23 +1,261 @@
 ﻿<!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>FinOps Accelerator</title>
-  <link rel='stylesheet' href='../assets/styles.css'>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinOps Accelerator – Nichesoft</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <style>
+    :root { --warn:#f0c36a; --bad:#f56f6c; --good:#6fe39a; --accent:#5ad1aa; --accent-2:#5aa8d1; --border:#1f2330; }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    main{max-width:1100px;margin:24px auto;padding:0 16px;color:#e6e6e6}
+    h2{margin:0 0 10px}
+    h3{margin:12px 0 6px;font-size:14px;color:#dfe3ea}
+    .muted{color:#9aa3b2}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .panel{grid-column:span 6}
+    @media (max-width:900px){.panel{grid-column:span 12}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 24px rgba(0,0,0,.35);padding:16px}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:12px}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:rgba(255,255,255,.02)}
+    .kpi .label{color:#9aa3b2;font-size:12px}
+    .kpi .value{font-weight:600;font-size:22px;margin-top:6px}
+    .good{color:var(--good)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+    .list{margin:0;padding-left:18px}
+    .columns{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.columns{grid-template-columns:1fr}}
+    .play{border:1px dashed #2a2f3b;border-radius:10px;padding:12px}
+    .bar{height:10px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+    th{color:#9aa3b2}
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.timeline{grid-template-columns:1fr}}
+    .step{border-left:3px solid var(--accent);padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.02)}
+    .btns{display:flex;gap:8px;flex-wrap:wrap}
+    button{background:rgba(255,255,255,.04);border:1px solid var(--border);color:#e6e6e6;padding:8px 10px;border-radius:8px;cursor:pointer}
+    button:hover{background:rgba(255,255,255,.08)}
+    .note{font-size:12px;color:#9aa3b2}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+    .stat{display:flex;gap:10px;align-items:center}
+    .stat .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    .check{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.check{grid-template-columns:1fr}}
+  </style>
 </head>
-<body class='brand-bg'>
-  <header class='brand-header'>
-    <img src='../assets/logo.svg' alt='Nichesoft logo'>
-    <div class='brand-title'>FinOps Accelerator</div>
+<body class="brand-bg">
+  <header class="brand-header">
+    <img src="../assets/logo.svg" alt="Nichesoft logo" />
+    <div class="brand-title">FinOps Accelerator</div>
   </header>
-  <main style='max-width:900px;margin:24px auto;padding:0 16px;color:#e6e6e6;'>
-    <h1 style='margin:0 0 8px;'>FinOps Accelerator</h1>
-    <p style='color:#9aa3b2;'>Placeholder page. Deliverables will appear here.</p>
-    <section style='border:1px solid var(--border);border-radius:12px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));box-shadow:0 12px 24px rgba(0,0,0,0.35);'>
-      Use this folder to host HTML outputs, images, and downloadable artifacts for <strong>FinOps Accelerator</strong>.
+
+  <main>
+    <section class="kpis">
+      <div class="kpi"><div class="label">Estimated Savings (3–6 months)</div><div class="value good">12–25%</div></div>
+      <div class="kpi"><div class="label">Commitment Coverage Target</div><div class="value">70–85%</div></div>
+      <div class="kpi"><div class="label">Tag Compliance Target</div><div class="value">95%+</div></div>
+      <div class="kpi"><div class="label">Forecast Accuracy</div><div class="value warn">±5–8%</div></div>
+    </section>
+
+    <section class="grid" style="margin-top:16px;">
+      <section class="card panel">
+        <h2>Actionable Cost Optimization</h2>
+        <div class="muted">From rightsizing, idle cleanup to RI/SP planning and budget automation—we assess, prioritize, and implement.</div>
+        <div class="columns" style="margin-top:10px;">
+          <div class="play">
+            <strong>Rightsizing & Idle</strong>
+            <ul class="list">
+              <li>CPU/memory utilization based resizing</li>
+              <li>Idle/Orphan resource cleanup</li>
+              <li>Schedule non-prod off-hours</li>
+            </ul>
+          </div>
+          <div class="play">
+            <strong>RI/SP Coverage</strong>
+            <ul class="list">
+              <li>Target policy: 70–85% coverage</li>
+              <li>Automated purchase guardrails</li>
+              <li>Waste mitigation & renewal</li>
+            </ul>
+          </div>
+          <div class="play">
+            <strong>Budgets & Alerts</strong>
+            <ul class="list">
+              <li>Unit-cost & team budgets</li>
+              <li>Variance + anomaly alerts</li>
+              <li>Monthly exec summary</li>
+            </ul>
+          </div>
+        </div>
+        <h3>Playbook Details</h3>
+        <table>
+          <thead><tr><th>Initiative</th><th>Approach</th><th>Owner</th><th>Expected Impact</th><th>Timeline</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Rightsize top 20% costly workloads</td>
+              <td>Analyze utilization; apply resize/scheduling; validate in staging</td>
+              <td>Engineering + FinOps</td>
+              <td><span class="good">5–10%</span> infra reduction</td>
+              <td>30 days</td>
+            </tr>
+            <tr>
+              <td>Commitment coverage uplift</td>
+              <td>Coverage model, policy, and auto-purchase with guardrails</td>
+              <td>FinOps</td>
+              <td><span class="good">8–15%</span> discount capture</td>
+              <td>45–60 days</td>
+            </tr>
+            <tr>
+              <td>Budget & anomaly automation</td>
+              <td>Team/unit budgets; Slack/Email alerts + weekly digest</td>
+              <td>FinOps + Finance</td>
+              <td>Faster remediation; <span class="warn">MTTR ↓</span></td>
+              <td>30–45 days</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="btns" style="margin-top:10px;"><button onclick="window.print()">Export PDF</button></div>
+      </section>
+
+      <section class="card panel">
+        <h2>Visualization Dashboards</h2>
+        <div class="muted">Persona-based, multi-cloud views for Finance, Engineering, and Executives. Single source of truth with forecasting, variance, and anomaly insights.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Persona</th><th>Key Widgets</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Finance</td>
+              <td>
+                • Forecast vs. Actuals, YoY/MoM trends<br/>
+                • Budgets and chargeback/showback<br/>
+                • Vendor/category split, savings realized
+              </td>
+              <td><div class="bar"><span style="width:90%"></span></div></td>
+            </tr>
+            <tr>
+              <td>Engineering</td>
+              <td>
+                • Service/unit cost and SLO overlays<br/>
+                • Rightsizing backlog with impact<br/>
+                • Idle/waste tracker with owner
+              </td>
+              <td><div class="bar"><span style="width:85%"></span></div></td>
+            </tr>
+            <tr>
+              <td>Executives</td>
+              <td>
+                • KPI scorecard and savings impact<br/>
+                • Trend projections and scenarios<br/>
+                • Top risks and remediation status
+              </td>
+              <td><div class="bar"><span style="width:88%"></span></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Data Sources</h3>
+        <div class="grid-2">
+          <div class="card" style="padding:12px">
+            <div class="stat"><span class="dot"></span><div><strong>Cloud billing exports</strong><div class="note">CUR/CE, Azure EA/Cost Mgmt, GCP Billing</div></div></div>
+          </div>
+          <div class="card" style="padding:12px">
+            <div class="stat"><span class="dot"></span><div><strong>Telemetry</strong><div class="note">Utilization (CPU/RAM), requests, SLOs</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card panel">
+        <h2>Built-in Governance & Guardrails</h2>
+        <div class="muted">Tagging policies, policy-as-code, showback/chargeback, and automated enforcement for long-term discipline.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Control</th><th>Description</th><th>Status</th><th>Owner</th></tr></thead>
+          <tbody>
+            <tr><td>Tagging Policy</td><td>Mandatory tags + lineage; quarterly audits</td><td><span class="pill">In Progress</span></td><td>FinOps</td></tr>
+            <tr><td>Policy-as-Code</td><td>CI/CD checks & guardrails (size/region/TTL)</td><td><span class="pill">Planned</span></td><td>Platform</td></tr>
+            <tr><td>Showback/Chargeback</td><td>Unit-cost per product/team with budgets</td><td><span class="pill">Rolling Out</span></td><td>Finance</td></tr>
+            <tr><td>Access Controls</td><td>Least privilege for spend operations</td><td><span class="pill">In Place</span></td><td>Security</td></tr>
+          </tbody>
+        </table>
+        <h3>Maturity Checklist</h3>
+        <ul class="list">
+          <li>95%+ resources compliant with mandatory tags</li>
+          <li>Automated guardrails prevent non-compliant deployments</li>
+          <li>Showback reports consumed by budget owners monthly</li>
+          <li>Exception process with time-bound remediation</li>
+        </ul>
+      </section>
+
+      <section class="card panel">
+        <h2>Proven KPIs & Measurable Impact</h2>
+        <div class="muted">Track savings, accuracy, compliance, and adoption to show value within months.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>KPI</th><th>Target</th><th>Current</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td>Net Savings</td><td>12–25% in 6 months</td><td class="good">+9%</td><td><div class="bar"><span style="width:45%"></span></div></td></tr>
+            <tr><td>Forecast Accuracy</td><td>±5–8%</td><td class="warn">±11%</td><td><div class="bar"><span style="width:55%"></span></div></td></tr>
+            <tr><td>Tag Compliance</td><td>95%+</td><td class="warn">88%</td><td><div class="bar"><span style="width:88%"></span></div></td></tr>
+            <tr><td>Commitment Coverage</td><td>70–85%</td><td class="warn">62%</td><td><div class="bar"><span style="width:62%"></span></div></td></tr>
+          </tbody>
+        </table>
+        <h3>Definitions</h3>
+        <ul class="list">
+          <li><strong>Net Savings</strong>: Realized monthly cost reduction after offsetting growth.</li>
+          <li><strong>Forecast Accuracy</strong>: |Forecast − Actual| ÷ Actual.</li>
+          <li><strong>Commitment Coverage</strong>: % On‑demand spend covered by RI/SP.</li>
+          <li><strong>Tag Compliance</strong>: % billable resources with mandatory tags.</li>
+        </ul>
+      </section>
+
+      <section class="card" style="grid-column:span 12;">
+        <h2>90-Day Accelerator Roadmap</h2>
+        <div class="timeline" style="margin-top:8px;">
+          <div class="step"><strong>Days 0–30</strong><br/>Current state, tagging policy, savings backlog, dashboards baseline.</div>
+          <div class="step"><strong>Days 31–60</strong><br/>Rightsizing + idle cleanup sprints, budget & alerts, RI/SP plan.</div>
+          <div class="step"><strong>Days 61–90</strong><br/>Policy-as-code, chargeback rollout, exec scorecard, operate runbook.</div>
+        </div>
+        <h3>Weekly Activities</h3>
+        <table>
+          <thead><tr><th>Week</th><th>Focus</th><th>Outputs</th></tr></thead>
+          <tbody>
+            <tr><td>W1</td><td>Discovery & data access</td><td>CUR/Exports connected, env inventory, owners mapped</td></tr>
+            <tr><td>W2</td><td>Baseline & KPIs</td><td>Spend baseline, KPI targets, savings hypotheses</td></tr>
+            <tr><td>W3–4</td><td>Tagging policy & dashboards</td><td>Policy v1, finance/eng dashboards baseline</td></tr>
+            <tr><td>W5–6</td><td>Rightsizing sprint</td><td>Top 20 workloads resized/scheduled; playbook</td></tr>
+            <tr><td>W7</td><td>Commitment plan</td><td>Coverage model, controls, purchase guardrails</td></tr>
+            <tr><td>W8</td><td>Budgets & alerts</td><td>Team budgets, variance/anomaly alerts live</td></tr>
+            <tr><td>W9</td><td>Governance hardening</td><td>Policy-as-code checks (size/region/TTL)</td></tr>
+            <tr><td>W10</td><td>Chargeback/showback</td><td>Allocation model, unit-cost report, owner reviews</td></tr>
+            <tr><td>W11</td><td>Executive scorecard</td><td>KPI scorecard, savings realized vs. target</td></tr>
+            <tr><td>W12</td><td>Operate & handover</td><td>Runbook, RACI, backlog, roadmap next 2 quarters</td></tr>
+          </tbody>
+        </table>
+        <h3>Exit Criteria</h3>
+        <div class="check">
+          <div class="card" style="padding:12px"><strong>Optimization</strong><br/><span class="note">≥ 10% net savings realized; rightsizing backlog embedded in sprints</span></div>
+          <div class="card" style="padding:12px"><strong>Coverage</strong><br/><span class="note">RI/SP at policy target with guardrails</span></div>
+          <div class="card" style="padding:12px"><strong>Governance</strong><br/><span class="note">Tag compliance ≥ 95%; policy-as-code active</span></div>
+          <div class="card" style="padding:12px"><strong>Dashboards</strong><br/><span class="note">Finance/Engineering/Executive views adopted</span></div>
+          <div class="card" style="padding:12px"><strong>Operating Model</strong><br/><span class="note">Runbook, RACI, monthly reviews in calendar</span></div>
+        </div>
+        <h3>Risks & Mitigations</h3>
+        <table>
+          <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr><td>Access delays to billing/telemetry</td><td>Start with CSV exports; parallelize requests; exec sponsor unblock</td></tr>
+            <tr><td>Low adoption by teams</td><td>Embed champions; share quick wins; automate reminders</td></tr>
+            <tr><td>Change freeze windows</td><td>Plan non-prod first; use schedules; defer high-risk changes</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:8px;">Assumptions: Multi-cloud billing access granted; read-only telemetry; owner mapping for top workloads; change windows available.</p>
+      </section>
     </section>
   </main>
-  <footer class='brand-footer'>© Nichesoft • FinOps Services</footer>
+
+  <footer class="brand-footer">© Nichesoft • FinOps Accelerator</footer>
 </body>
 </html>

@@ -1,0 +1,426 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinOps Advanced Health Check â€“ Maturity Benchmarking Report</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #11131a;
+      --text: #e6e6e6;
+      --muted: #9aa3b2;
+      --accent: #5ad1aa;
+      --accent-2: #5aa8d1;
+      --warn: #f0c36a;
+      --bad: #f56f6c;
+      --good: #6fe39a;
+      --border: #1f2330;
+      --shadow: 0 1px 0 rgba(255,255,255,0.02) inset,
+                0 12px 24px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 70% -10%, #11131a, var(--bg));
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    header {
+      padding: 24px 20px 8px; max-width: 1100px; margin: 0 auto;
+    }
+    .title { font-size: 22px; color: #f7f7f7; letter-spacing: 0.2px; }
+    .subtitle { color: var(--muted); margin-top: 6px; font-size: 14px; }
+
+    .wrap { max-width: 1100px; margin: 16px auto 48px; padding: 0 20px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));
+      border: 1px solid var(--border);
+      border-radius: 12px; box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .kpis { grid-column: span 12; display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); }
+    .kpi { padding: 14px; border-radius: 10px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); }
+    .kpi .label { color: var(--muted); font-size: 12px; letter-spacing: 0.3px; }
+    .kpi .value { font-size: 22px; margin-top: 6px; font-weight: 600; }
+    .kpi.bad .value { color: var(--bad); }
+    .kpi.warn .value { color: var(--warn); }
+    .kpi.good .value { color: var(--good); }
+
+    .panel { grid-column: span 6; }
+    @media (max-width: 900px){ .panel { grid-column: span 12; } .kpis { grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 560px){ .kpis { grid-template-columns: 1fr;} }
+
+    h2 { margin: 0 0 12px; font-size: 16px; letter-spacing: 0.2px; }
+    .muted { color: var(--muted); font-size: 12px; }
+
+    /* Maturity curve */
+    .curve { width: 100%; height: 220px; position: relative; }
+    .curve svg { width: 100%; height: 100%; display: block; }
+    .curve .tick { position: absolute; bottom: 6px; transform: translateX(-50%); color: var(--muted); font-size: 12px; }
+    .pill {
+      display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Domain table */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    th { color: var(--muted); font-weight: 600; }
+    .bar { height: 10px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .phase { font-weight: 600; }
+    .phase.Crawl { color: var(--bad); }
+    .phase.Walk { color: var(--warn); }
+    .phase.Run { color: var(--good); }
+
+    /* Radar */
+    .radar { width: 100%; height: 280px; }
+    .legend { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .dot.v { background: var(--accent); }
+    .dot.o { background: var(--accent-2); }
+    .dot.g { background: var(--good); }
+
+    .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 24px; }
+
+    .btns { display:flex; gap:8px; flex-wrap: wrap; }
+    button { background: rgba(255,255,255,0.04); border:1px solid var(--border); color: var(--text); padding:8px 10px; border-radius:8px; cursor:pointer; }
+    button:hover { background: rgba(255,255,255,0.08); }
+  </style>
+  <link rel='stylesheet' href='../assets/styles.css'>
+</head>
+<body class='brand-bg'>
+  <header class='brand-header'>
+    <img src='../assets/logo.svg' alt='Nichesoft logo'>
+    <div class='brand-title'>FinOps Advanced Health Check</div>
+  </header>
+  <header>
+    <div class="title">FinOps Advanced Health Check</div>
+    <div class="subtitle">Maturity Benchmarking Report â€“ Placement on the FinOps maturity curve (Crawl, Walk, Run) with domain-by-domain scoring for visibility, optimization, and governance.</div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">Overall Maturity</div>
+          <div id="overallPhase" class="value">Walk</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Overall Score</div>
+          <div id="overallScore" class="value">68/100</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Last Assessed</div>
+          <div class="value" id="assessedDate"></div>
+        </div>
+        <div class="kpi">
+          <div class="label">Assessed By</div>
+          <div class="value">FinOps Team</div>
+        </div>
+      </div>
+
+      <!-- Maturity curve -->
+      <section class="card panel">
+        <h2>Maturity Curve</h2>
+        <div class="muted">Placement across Crawl â†’ Walk â†’ Run with confidence band.</div>
+        <div class="curve" id="curve">
+          <svg viewBox="0 0 600 220" aria-label="FinOps Maturity Curve">
+            <!-- Axis -->
+            <line x1="40" y1="180" x2="560" y2="180" stroke="#2a2f3b" stroke-width="1" />
+            <!-- Curve path -->
+            <path d="M 40 170 C 220 50, 380 50, 560 170" fill="none" stroke="#3a4152" stroke-width="2" />
+            <!-- Confidence band -->
+            <path d="M 40 172 C 220 52, 380 52, 560 172 L 560 182 C 380 62, 220 62, 40 182 Z" fill="rgba(90, 209, 170, 0.08)" />
+            <!-- Labels positions (Crawl, Walk, Run)  -->
+            <g fill="#9aa3b2" font-size="12">
+              <text x="40" y="200">Crawl</text>
+              <text x="300" y="200" text-anchor="middle">Walk</text>
+              <text x="560" y="200" text-anchor="end">Run</text>
+            </g>
+            <!-- Marker -->
+            <circle id="marker" cx="300" cy="115" r="8" fill="#5ad1aa" stroke="#0b0c10" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="muted">Current placement: <span class="pill" id="phasePill">Walk</span></div>
+        <div class="btns" style="margin-top:10px;">
+          <button onclick="window.print()">Export PDF</button>
+        </div>
+      </section>
+
+      <!-- Domain scoring -->
+      <section class="card panel">
+        <h2>Domain Scores</h2>
+        <div class="muted">Domain-by-domain scoring for Visibility, Optimization, and Governance.</div>
+        <table id="domainTable" style="margin-top:8px;">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th style="width:45%">Score</th>
+              <th>Value</th>
+              <th>Maturity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled by script -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Radar chart (lightweight SVG) -->
+      <section class="card panel">
+        <h2>Profile (Radar)</h2>
+        <svg class="radar" viewBox="0 0 320 320" id="radar" aria-label="Radar chart"></svg>
+        <div class="legend">
+          <span class="dot v"></span><span class="muted">Visibility</span>
+          <span class="dot o"></span><span class="muted">Optimization</span>
+          <span class="dot g"></span><span class="muted">Governance</span>
+        </div>
+      </section>
+
+      <!-- Notes / Recommendations -->
+      <section class="card panel">
+        <h2>Key Recommendations</h2>
+        <ul class="muted" style="margin:0; padding-left: 16px;">
+          <li>Automate allocation and tagging to improve Visibility fidelity.</li>
+          <li>Adopt rightsizing and commitment management policies to lift Optimization.</li>
+          <li>Strengthen guardrails and policy-as-code to mature Governance.</li>
+        </ul>
+      </section>
+    </section>
+
+          <!-- Detailed Current State Assessment -->
+      <section class="card panel">
+        <h2>Detailed Current State Assessment</h2>
+        <div class="muted">Independent review across cost Visibility, Optimization practices, and Governance processes spanning Finance and Engineering.</div>
+        <table style="margin-top:8px;">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Finance View</th>
+              <th>Engineering View</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Visibility</td>
+              <td>Tagging at 78%; showback monthly</td>
+              <td>Workload cost dashboards in place</td>
+              <td><span class="pill">Walk</span></td>
+            </tr>
+            <tr>
+              <td>Optimization</td>
+              <td>Budgets set; variance tracked</td>
+              <td>Rightsizing ad-hoc; commitments at 45%</td>
+              <td><span class="pill">Crawl</span></td>
+            </tr>
+            <tr>
+              <td>Governance</td>
+              <td>Spend policies defined</td>
+              <td>Guardrails partial; policy-as-code piloting</td>
+              <td><span class="pill">Walk</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Gap Identification & Risk Analysis -->
+      <section class="card panel">
+        <h2>Gap Identification & Risk Analysis</h2>
+        <div class="muted">Findings mapped to current state with risks and recommended actions. See full detail: <a class="linklike" href="#gap-details">link</a></div>
+        <table style="margin-top:8px;">
+          <thead>
+            <tr>
+              <th>Finding</th>
+              <th>Impact</th>
+              <th>Risk</th>
+              <th>Recommended Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Low commitment coverage</td>
+              <td>~18% overspend vs. optimized</td>
+              <td><span class="pill" style="color:#f0c36a;border-color:#2a2f3b;">Medium</span></td>
+              <td>Adopt RI/SP management policy; automate purchase guardrails</td>
+            </tr>
+            <tr>
+              <td>Inconsistent tagging taxonomy</td>
+              <td>Limited cost allocation fidelity</td>
+              <td><span class="pill" style="color:#f56f6c;border-color:#2a2f3b;">High</span></td>
+              <td>Standardize tags; enforce via org policies and CI checks</td>
+            </tr>
+            <tr>
+              <td>Manual rightsizing</td>
+              <td>Slow remediation; resource waste</td>
+              <td><span class="pill" style="color:#f0c36a;border-color:#2a2f3b;">Medium</span></td>
+              <td>Integrate scheduler; set weekly auto-generated recommendations</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Prioritized Recommendations -->
+      <section class="card panel">
+        <h2>Prioritized Recommendations</h2>
+        <div class="muted">Action-oriented guidance sequenced by business value and feasibility.</div>
+        <table style="margin-top:8px;">
+          <thead>
+            <tr>
+              <th>Recommendation</th>
+              <th>Business Value</th>
+              <th>Feasibility</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Implement commitment coverage policy (targets + automation)</td>
+              <td>High</td>
+              <td>Medium</td>
+              <td><span class="pill" style="color:#6fe39a;border-color:#2a2f3b;">P1</span></td>
+            </tr>
+            <tr>
+              <td>Standardize and enforce tagging (org policy + CI)</td>
+              <td>High</td>
+              <td>Medium</td>
+              <td><span class="pill" style="color:#6fe39a;border-color:#2a2f3b;">P1</span></td>
+            </tr>
+            <tr>
+              <td>Automate idle/oversized resource cleanup</td>
+              <td>Medium</td>
+              <td>High</td>
+              <td><span class="pill" style="color:#f0c36a;border-color:#2a2f3b;">P2</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    <div class='footer'>Sample report. Edit data in script below to customize.</div>
+  </main>
+
+  <script>
+    // --- Configurable data (edit to customize the report) ---
+    const report = {
+      overallPhase: 'Walk',         // Crawl | Walk | Run
+      overallScore: 68,             // 0..100
+      assessedDate: new Date(),
+      domains: [
+        { name: 'Visibility',  score: 72 },
+        { name: 'Optimization',score: 61 },
+        { name: 'Governance',  score: 70 },
+      ],
+    };
+
+    // --- Helpers ---
+    function phaseFromScore(s){
+      if (s < 50) return 'Crawl';
+      if (s < 75) return 'Walk';
+      return 'Run';
+    }
+    function fmtDate(d){
+      try { return new Intl.DateTimeFormat(undefined, { year:'numeric', month:'short', day:'2-digit' }).format(d); }
+      catch(e){ return d.toISOString().slice(0,10); }
+    }
+
+    // --- Populate header KPIs ---
+    document.getElementById('overallPhase').textContent = report.overallPhase;
+    document.getElementById('overallScore').textContent = report.overallScore + '/100';
+    document.getElementById('assessedDate').textContent = fmtDate(report.assessedDate);
+
+    // --- Maturity curve marker placement ---
+    (function(){
+      const levels = { Crawl: 40, Walk: 300, Run: 560 }; // x positions
+      const yOnCurve = { Crawl: 170, Walk: 115, Run: 170 }; // approximate y
+      const phase = report.overallPhase in levels ? report.overallPhase : phaseFromScore(report.overallScore);
+      document.getElementById('phasePill').textContent = phase;
+      const marker = document.getElementById('marker');
+      marker.setAttribute('cx', levels[phase]);
+      marker.setAttribute('cy', yOnCurve[phase]);
+    })();
+
+    // --- Domain table ---
+    (function(){
+      const tbody = document.querySelector('#domainTable tbody');
+      tbody.innerHTML = '';
+      report.domains.forEach(d => {
+        const tr = document.createElement('tr');
+        const maturity = phaseFromScore(d.score);
+        tr.innerHTML = `
+          <td>${d.name}</td>
+          <td><div class="bar"><span style="width:${d.score}%"></span></div></td>
+          <td>${d.score}/100</td>
+          <td class="phase ${maturity}">${maturity}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    })();
+
+    // --- Radar chart ---
+    (function(){
+      const svg = document.getElementById('radar');
+      const size = 320, cx = size/2, cy = size/2, r = 120;
+      const axes = report.domains.map((d,i)=>({
+        name: d.name,
+        score: d.score/100,
+        angle: -Math.PI/2 + i * (2*Math.PI / report.domains.length)
+      }));
+
+      function p(angle, m){
+        return [ cx + Math.cos(angle) * r * m, cy + Math.sin(angle) * r * m ];
+      }
+
+      // grid (3 rings)
+      for (let i=1;i<=3;i++){
+        const rr = (r * i)/3;
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', rr);
+        c.setAttribute('fill','none'); c.setAttribute('stroke','#2a2f3b'); c.setAttribute('stroke-width','1');
+        svg.appendChild(c);
+      }
+      // axes lines + labels
+      axes.forEach(ax => {
+        const [x, y] = p(ax.angle, 1);
+        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+        line.setAttribute('x2', x);  line.setAttribute('y2', y);
+        line.setAttribute('stroke', '#3a4152'); line.setAttribute('stroke-width', '1');
+        svg.appendChild(line);
+        // label
+        const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+        lbl.setAttribute('x', cx + Math.cos(ax.angle)* (r+16));
+        lbl.setAttribute('y', cy + Math.sin(ax.angle)* (r+16));
+        lbl.setAttribute('fill', '#9aa3b2');
+        lbl.setAttribute('font-size', '12');
+        lbl.setAttribute('text-anchor', Math.cos(ax.angle) > 0.2 ? 'start' : (Math.cos(ax.angle) < -0.2 ? 'end' : 'middle'));
+        lbl.textContent = ax.name;
+        svg.appendChild(lbl);
+      });
+
+      // polygon
+      const pts = axes.map(ax => p(ax.angle, ax.score)).map(([x,y])=>`${x},${y}`).join(' ');
+      const poly = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+      poly.setAttribute('points', pts);
+      poly.setAttribute('fill', 'rgba(90,209,170,0.22)');
+      poly.setAttribute('stroke', '#5ad1aa');
+      poly.setAttribute('stroke-width', '2');
+      svg.appendChild(poly);
+
+      // vertex dots
+      axes.forEach(ax => {
+        const [x, y] = p(ax.angle, ax.score);
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 4);
+        c.setAttribute('fill', '#5aa8d1'); c.setAttribute('stroke', '#0b0c10'); c.setAttribute('stroke-width', '1');
+        svg.appendChild(c);
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+

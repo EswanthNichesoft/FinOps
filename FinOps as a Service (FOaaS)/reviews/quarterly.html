@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quarterly Improvement Review – FOaaS</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    :root { --warn:#f0c36a; --bad:#f56f6c; --good:#6fe39a; --accent:#5ad1aa; --accent-2:#5aa8d1; --border:#1f2330; }
+    main{max-width:1100px;margin:24px auto;padding:0 16px;color:#e6e6e6}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .panel{grid-column:span 6}
+    @media (max-width:900px){.panel{grid-column:span 12}}
+    .card{border:1px solid var(--border);border-radius:12px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));box-shadow:0 12px 24px rgba(0,0,0,.35)}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+    th{color:#9aa3b2}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:12px}
+    .muted{color:#9aa3b2}
+    .spark{width:100%;height:36px}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body class="brand-bg">
+  <header class="brand-header">
+    <img src="../../assets/logo.svg" alt="Nichesoft logo" />
+    <div class="brand-title">Quarterly Improvement Review</div>
+  </header>
+  <main>
+    <section class="kpis">
+      <div class="card"><div class="muted">Quarter Spend</div><div style="font-size:22px;font-weight:600">$7.1M</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#5aa8d1" stroke-width="2" points="0,28 20,26 40,24 60,22 80,21 100,20"/></svg></div>
+      <div class="card"><div class="muted">Savings Realized (Q)</div><div style="font-size:22px;font-weight:600" class="good">$610k</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#5ad1aa" stroke-width="2" points="0,30 20,29 40,26 60,24 80,22 100,20"/></svg></div>
+      <div class="card"><div class="muted">Forecast Accuracy</div><div style="font-size:22px;font-weight:600" class="warn">±6.1%</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#f0c36a" stroke-width="2" points="0,20 20,19 40,17 60,21 80,19 100,18"/></svg></div>
+      <div class="card"><div class="muted">Maturity Delta</div><div style="font-size:22px;font-weight:600">Walk → Run</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#e6e6e6" stroke-width="2" points="0,26 20,24 40,22 60,20 80,18 100,16"/></svg></div>
+    </section>
+
+    <section class="grid" style="margin-top:16px;">
+      <section class="card panel">
+        <h2>Maturity Progress</h2>
+        <table>
+          <thead><tr><th>Domain</th><th>Q-1</th><th>Q</th><th>Delta</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Visibility</td><td>68</td><td>74</td><td class="good">+6</td><td><span class="pill">Improving</span></td></tr>
+            <tr><td>Optimization</td><td>60</td><td>69</td><td class="good">+9</td><td><span class="pill">Improving</span></td></tr>
+            <tr><td>Governance</td><td>64</td><td>70</td><td class="good">+6</td><td><span class="pill">Steady</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="card panel">
+        <h2>Adoption & Data Quality</h2>
+        <table>
+          <thead><tr><th>Area</th><th>Metric</th><th>Target</th><th>Current</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td>Dashboards</td><td>Monthly active viewers</td><td>120</td><td>103</td><td><span class="pill">Up</span></td></tr>
+            <tr><td>Tagging</td><td>Compliance</td><td>95%</td><td>91%</td><td><span class="pill">Up</span></td></tr>
+            <tr><td>Coverage</td><td>RI/SP coverage</td><td>75%</td><td>66%</td><td><span class="pill">Up</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Roadmap Update</h2>
+        <table>
+          <thead><tr><th>Initiative</th><th>Outcome</th><th>Status</th><th>Next</th></tr></thead>
+          <tbody>
+            <tr><td>Rightsizing program</td><td>$310k/qtr savings; backlog embedded</td><td><span class="pill">Operationalized</span></td><td>Expand to data platform</td></tr>
+            <tr><td>Commitment policy</td><td>Guardrails defined; pilot live</td><td><span class="pill">Pilot</span></td><td>Scale to 75% coverage</td></tr>
+            <tr><td>Policy-as-code</td><td>Tagging checks in CI</td><td><span class="pill">In Progress</span></td><td>Add size/region/TTL checks</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="card panel">
+        <h2>Risks & Decisions</h2>
+        <table>
+          <thead><tr><th>Item</th><th>Detail</th><th>Owner</th><th>Needed</th></tr></thead>
+          <tbody>
+            <tr><td>Cloud limits</td><td>Capacity constraints for spot usage</td><td>Platform</td><td>Vendor escalation</td></tr>
+            <tr><td>Budget reallocation</td><td>Shift savings to roadmap initiatives</td><td>Finance</td><td>Exec approval</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <div class="btns" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+      <a class="link" href="../index.html" style="color:#5ad1aa;text-decoration:none">← Back to FOaaS</a>
+      <button onclick="window.print()">Export PDF</button>
+    </div>
+  </main>
+  <footer class="brand-footer">© Nichesoft • FOaaS</footer>
+</body>
+</html>

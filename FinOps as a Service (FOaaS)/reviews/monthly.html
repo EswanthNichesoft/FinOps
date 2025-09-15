@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monthly Optimization Review – FOaaS</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    :root { --warn:#f0c36a; --bad:#f56f6c; --good:#6fe39a; --accent:#5ad1aa; --accent-2:#5aa8d1; --border:#1f2330; }
+    main{max-width:1100px;margin:24px auto;padding:0 16px;color:#e6e6e6}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .panel{grid-column:span 6}
+    @media (max-width:900px){.panel{grid-column:span 12}}
+    .card{border:1px solid var(--border);border-radius:12px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));box-shadow:0 12px 24px rgba(0,0,0,.35)}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:rgba(255,255,255,.02)}
+    .kpi .label{color:#9aa3b2;font-size:12px}
+    .kpi .value{font-weight:600;font-size:22px;margin-top:6px}
+    .good{color:var(--good)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+    th{color:#9aa3b2}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:12px}
+    .spark{width:100%;height:36px}
+    .muted{color:#9aa3b2}
+    .btns{display:flex;gap:8px;flex-wrap:wrap}
+    a.link{color:var(--accent);text-decoration:none}
+  </style>
+</head>
+<body class="brand-bg">
+  <header class="brand-header">
+    <img src="../../assets/logo.svg" alt="Nichesoft logo" />
+    <div class="brand-title">Monthly Optimization Review</div>
+  </header>
+  <main>
+    <section class="kpis">
+      <div class="kpi"><div class="label">Monthly Spend</div><div class="value">$2.4M</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#5aa8d1" stroke-width="2" points="0,28 20,26 40,24 60,20 80,23 100,18"/></svg></div>
+      <div class="kpi"><div class="label">Savings Realized</div><div class="value good">+$210k</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#5ad1aa" stroke-width="2" points="0,30 20,28 40,26 60,22 80,18 100,16"/></svg></div>
+      <div class="kpi"><div class="label">Forecast Accuracy</div><div class="value warn">±7.2%</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#f0c36a" stroke-width="2" points="0,18 20,20 40,16 60,22 80,18 100,20"/></svg></div>
+      <div class="kpi"><div class="label">Tag Compliance</div><div class="value">92%</div><svg class="spark" viewBox="0 0 100 36"><polyline fill="none" stroke="#e6e6e6" stroke-width="2" points="0,26 20,24 40,22 60,24 80,22 100,20"/></svg></div>
+    </section>
+
+    <section class="grid" style="margin-top:16px;">
+      <section class="card panel">
+        <h2>Agenda</h2>
+        <ul>
+          <li>Spend overview: Forecast vs. Actuals, variance by BU/product</li>
+          <li>Savings realized this month and cumulative YTD</li>
+          <li>Rightsizing & idle cleanup progress and blockers</li>
+          <li>Commitment coverage status and actions</li>
+          <li>Anomalies and incident MTTR</li>
+          <li>Top opportunities for next month</li>
+        </ul>
+      </section>
+      <section class="card panel">
+        <h2>Highlights</h2>
+        <table>
+          <thead><tr><th>Theme</th><th>Detail</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Rightsizing</td><td>14 services resized, EST monthly save $72k</td><td><span class="pill">On Track</span></td></tr>
+            <tr><td>Idle cleanup</td><td>173 orphans removed; 31 snapshots archived</td><td><span class="pill">Complete</span></td></tr>
+            <tr><td>Commitments</td><td>Coverage from 58% → 64%; plan to 72% next</td><td><span class="pill">In Progress</span></td></tr>
+            <tr><td>Anomalies</td><td>2 spikes (data export, load test) – mitigated</td><td><span class="pill">Closed</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Action Register</h2>
+        <table>
+          <thead><tr><th>Action</th><th>Owner</th><th>ETA</th><th>Impact</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Finalize RI/SP guardrails</td><td>FinOps</td><td>+10 days</td><td class="good">$55k/mo</td><td><span class="pill">In Progress</span></td></tr>
+            <tr><td>Enforce tagging in CI</td><td>Platform</td><td>+2 weeks</td><td class="warn">Data quality</td><td><span class="pill">Planned</span></td></tr>
+            <tr><td>Schedule non‑prod clusters</td><td>Eng</td><td>+3 weeks</td><td class="good">$35k/mo</td><td><span class="pill">In Progress</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="card panel">
+        <h2>Risk & Mitigations</h2>
+        <table>
+          <thead><tr><th>Risk</th><th>Mitigation</th><th>Owner</th></tr></thead>
+          <tbody>
+            <tr><td>Access delays to billing exports</td><td>Use CSV interim; escalate via sponsor</td><td>FinOps</td></tr>
+            <tr><td>Low tagging adherence</td><td>Policy + CI checks; exceptions time‑bound</td><td>Platform</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <div class="btns" style="margin-top:12px;">
+      <a class="link" href="../index.html">← Back to FOaaS</a>
+      <button onclick="window.print()">Export PDF</button>
+    </div>
+  </main>
+  <footer class="brand-footer">© Nichesoft • FOaaS</footer>
+</body>
+</html>

@@ -1,23 +1,132 @@
 ﻿<!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>FinOps as a Service (FOaaS)</title>
-  <link rel='stylesheet' href='../assets/styles.css'>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinOps as a Service (FOaaS) – Nichesoft</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <style>
+    :root { --warn:#f0c36a; --bad:#f56f6c; --good:#6fe39a; --accent:#5ad1aa; --accent-2:#5aa8d1; --border:#1f2330; }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    main{max-width:1100px;margin:24px auto;padding:0 16px;color:#e6e6e6}
+    h2{margin:0 0 10px}
+    h3{margin:12px 0 6px;font-size:14px;color:#dfe3ea}
+    .muted{color:#9aa3b2}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .panel{grid-column:span 6}
+    @media (max-width:900px){.panel{grid-column:span 12}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 24px rgba(0,0,0,.35);padding:16px}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:12px}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:rgba(255,255,255,.02)}
+    .kpi .label{color:#9aa3b2;font-size:12px}
+    .kpi .value{font-weight:600;font-size:22px;margin-top:6px}
+    .good{color:var(--good)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+    .list{margin:0;padding-left:18px}
+    .bar{height:10px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+    th{color:#9aa3b2}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+    .btns{display:flex;gap:8px;flex-wrap:wrap}
+    .link{color:var(--accent);text-decoration:none}
+  </style>
 </head>
-<body class='brand-bg'>
-  <header class='brand-header'>
-    <img src='../assets/logo.svg' alt='Nichesoft logo'>
-    <div class='brand-title'>FinOps as a Service (FOaaS)</div>
+<body class="brand-bg">
+  <header class="brand-header">
+    <img src="../assets/logo.svg" alt="Nichesoft logo" />
+    <div class="brand-title">FinOps as a Service (FOaaS)</div>
   </header>
-  <main style='max-width:900px;margin:24px auto;padding:0 16px;color:#e6e6e6;'>
-    <h1 style='margin:0 0 8px;'>FinOps as a Service (FOaaS)</h1>
-    <p style='color:#9aa3b2;'>Placeholder page. Deliverables will appear here.</p>
-    <section style='border:1px solid var(--border);border-radius:12px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));box-shadow:0 12px 24px rgba(0,0,0,0.35);'>
-      Use this folder to host HTML outputs, images, and downloadable artifacts for <strong>FinOps as a Service (FOaaS)</strong>.
+
+  <main>
+    <section class="kpis">
+      <div class="kpi"><div class="label">Typical Savings (Year 1)</div><div class="value good">15–30%</div></div>
+      <div class="kpi"><div class="label">Forecast Accuracy Target</div><div class="value warn">±5–8%</div></div>
+      <div class="kpi"><div class="label">Tag Compliance Target</div><div class="value">95%+</div></div>
+      <div class="kpi"><div class="label">Commitment Coverage</div><div class="value">70–85%</div></div>
+    </section>
+
+    <section class="grid" style="margin-top:16px;">
+      <section class="card panel">
+        <h2>Financial Transparency & Reporting</h2>
+        <div class="muted">Real-time dashboards, executive reports, and ongoing reviews that give finance and engineering leaders clear visibility into spend.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Audience</th><th>Reports & Dashboards</th><th>Frequency</th></tr></thead>
+          <tbody>
+            <tr><td>Executives</td><td>KPI scorecard, savings impact, trend outlook</td><td>Monthly</td></tr>
+            <tr><td>Finance</td><td>Forecast vs. actuals, budgets, chargeback/showback</td><td>Monthly</td></tr>
+            <tr><td>Engineering</td><td>Service/unit costs, rightsizing queue, waste</td><td>Weekly</td></tr>
+          </tbody>
+        </table>
+        <div class="btns" style="margin-top:10px;">
+          <a class="link" href="reviews/monthly.html">Monthly optimization review →</a>
+          <a class="link" href="reviews/quarterly.html">Quarterly improvement review →</a>
+        </div>
+      </section>
+
+      <section class="card panel">
+        <h2>Continuous Cost Optimization</h2>
+        <div class="muted">Rightsizing, automation, RI/SP planning, and proactive adjustments to reduce waste and maximize savings.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Initiative</th><th>Description</th><th>Owner</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>Rightsizing</td><td>CPU/memory/SLO-based resize with staged rollouts</td><td>Eng + FinOps</td><td><span class="good">5–10%</span> infra</td></tr>
+            <tr><td>Idle cleanup</td><td>Orphans, unattached storage, stale snapshots</td><td>FinOps</td><td><span class="good">Quick wins</span></td></tr>
+            <tr><td>RI/SP planning</td><td>Coverage model, automation guardrails, renewals</td><td>FinOps</td><td>70–85% coverage</td></tr>
+            <tr><td>Schedules</td><td>Non‑prod off-hours with exceptions</td><td>Eng</td><td>Up to <span class="good">40%</span> in env</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Cloud Governance & Compliance</h2>
+        <div class="muted">Tagging, budget controls, alerts, and policy enforcement ensure accountability and adherence to standards.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Control</th><th>Description</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Tagging policy</td><td>Mandatory tags + lineage; auto‑remediation hooks</td><td><span class="pill">Rolling out</span></td></tr>
+            <tr><td>Budgets & alerts</td><td>Team budgets with variance/anomaly notifications</td><td><span class="pill">Active</span></td></tr>
+            <tr><td>Policy‑as‑code</td><td>CI/CD checks (size/region/TTL) + guardrails</td><td><span class="pill">Planned</span></td></tr>
+            <tr><td>Chargeback/Showback</td><td>Allocation by product/team; unit‑cost model</td><td><span class="pill">In use</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Strategic Planning & Forecasting</h2>
+        <div class="muted">Regular sessions to forecast future costs, align investments with growth, and manage financial risks.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Theme</th><th>Activities</th><th>Outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Forecasting</td><td>Top‑down + bottoms‑up with scenarios</td><td>±5–8% accuracy target</td></tr>
+            <tr><td>Portfolio planning</td><td>Cost design reviews; growth vs. unit cost</td><td>Budget alignment</td></tr>
+            <tr><td>Risk management</td><td>Vendor/capacity risks, spike playbooks</td><td>Runbooks + reserves</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="grid-column:span 12;">
+        <h2>Service KPIs & SLAs</h2>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Metric</th><th>Target</th><th>Reporting</th></tr></thead>
+          <tbody>
+            <tr><td>Net savings realized</td><td><span class="good">≥ 12%</span> in 6 months</td><td>Monthly</td></tr>
+            <tr><td>Forecast accuracy</td><td><span class="warn">±5–8%</span></td><td>Monthly</td></tr>
+            <tr><td>Tag compliance</td><td>≥ 95%</td><td>Weekly</td></tr>
+            <tr><td>Commitment coverage</td><td>70–85%</td><td>Monthly</td></tr>
+            <tr><td>MTTR anomalies</td><td><span class="good">↓ 30%</span></td><td>Monthly</td></tr>
+          </tbody>
+        </table>
+        <div class="btns" style="margin-top:10px;"><button onclick="window.print()">Export PDF</button></div>
+      </section>
     </section>
   </main>
-  <footer class='brand-footer'>© Nichesoft • FinOps Services</footer>
+
+  <footer class="brand-footer">© Nichesoft • FinOps as a Service (FOaaS)</footer>
 </body>
 </html>

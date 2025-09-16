@@ -1,23 +1,177 @@
 ﻿<!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>FinOps Health check</title>
-  <link rel='stylesheet' href='../assets/styles.css'>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinOps Health Check – Nichesoft</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <style>
+    :root { --warn:#f0c36a; --bad:#f56f6c; --good:#6fe39a; --accent:#5ad1aa; --accent-2:#5aa8d1; --border:#1f2330; }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    main{max-width:1100px;margin:24px auto;padding:0 16px;color:#e6e6e6}
+    h2{margin:0 0 10px}
+    h3{margin:12px 0 6px;font-size:14px;color:#dfe3ea}
+    .muted{color:#9aa3b2}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .panel{grid-column:span 6}
+    @media (max-width:900px){.panel{grid-column:span 12}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 24px rgba(0,0,0,.35);padding:16px}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:rgba(255,255,255,.02)}
+    .kpi .label{color:#9aa3b2;font-size:12px}
+    .kpi .value{font-weight:600;font-size:22px;margin-top:6px}
+    .good{color:var(--good)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+    th{color:#9aa3b2}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:12px}
+    .curve{width:100%;height:220px}
+    .bar{height:10px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden}
+    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+  </style>
 </head>
-<body class='brand-bg'>
-  <header class='brand-header'>
-    <img src='../assets/logo.svg' alt='Nichesoft logo'>
-    <div class='brand-title'>FinOps Health check</div>
+<body class="brand-bg">
+  <header class="brand-header">
+    <img src="../assets/logo.svg" alt="Nichesoft logo" />
+    <div class="brand-title">FinOps Health Check</div>
   </header>
-  <main style='max-width:900px;margin:24px auto;padding:0 16px;color:#e6e6e6;'>
-    <h1 style='margin:0 0 8px;'>FinOps Health check</h1>
-    <p style='color:#9aa3b2;'>Placeholder page. Deliverables will appear here.</p>
-    <section style='border:1px solid var(--border);border-radius:12px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));box-shadow:0 12px 24px rgba(0,0,0,0.35);'>
-      Use this folder to host HTML outputs, images, and downloadable artifacts for <strong>FinOps Health check</strong>.
+
+  <main>
+    <section class="kpis">
+      <div class="kpi"><div class="label">Overall Maturity</div><div class="value warn">Walk</div></div>
+      <div class="kpi"><div class="label">Overall Score</div><div class="value">66/100</div></div>
+      <div class="kpi"><div class="label">Target (6–9 months)</div><div class="value good">Run</div></div>
+      <div class="kpi"><div class="label">Last Assessed</div><div class="value">Sep 2025</div></div>
+    </section>
+
+    <section class="grid" style="margin-top:16px;">
+      <section class="card panel">
+        <h2>High-level Roadmap</h2>
+        <div class="muted">Roadmap across Inform, Optimize, Operate — short, mid, and long-term horizons.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Phase</th><th>Short-term (0–30d)</th><th>Mid-term (31–90d)</th><th>Long-term (90d+)</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Inform</td>
+              <td>Connect billing, baselines, KPI targets; tag policy v1</td>
+              <td>Dashboards for Finance/Eng; showback; data quality</td>
+              <td>Forecasting models; automated anomaly workflows</td>
+            </tr>
+            <tr>
+              <td>Optimize</td>
+              <td>Rightsizing + idle cleanup backlog; off-hours schedules</td>
+              <td>RI/SP coverage policy + guardrails; budget alerts</td>
+              <td>Continuous optimization runbooks; savings SLOs</td>
+            </tr>
+            <tr>
+              <td>Operate</td>
+              <td>RACI, review cadence, exec scorecard baseline</td>
+              <td>Policy-as-code (tags/size/region/TTL); governance board</td>
+              <td>Chargeback; cost-aware SDLC; quarterly maturity reviews</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Strategic Actions & Prioritization</h2>
+        <div class="muted">Actionable initiatives with priority and level of effort (LOE).</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Initiative</th><th>Phase</th><th>Priority</th><th>LOE</th><th>Expected Impact</th></tr></thead>
+          <tbody>
+            <tr><td>Standardize tagging</td><td>Inform</td><td><span class="pill">P1</span></td><td>Med</td><td>Data fidelity, allocation</td></tr>
+            <tr><td>Rightsize top workloads</td><td>Optimize</td><td><span class="pill">P1</span></td><td>Med</td><td class="good">5–10% save</td></tr>
+            <tr><td>Commitment coverage policy</td><td>Optimize</td><td><span class="pill">P1</span></td><td>Med</td><td class="good">8–15% save</td></tr>
+            <tr><td>Budgets & anomaly alerts</td><td>Inform/Operate</td><td><span class="pill">P2</span></td><td>Low</td><td>Faster remediation</td></tr>
+            <tr><td>Policy-as-code guardrails</td><td>Operate</td><td><span class="pill">P2</span></td><td>High</td><td>Reduce waste/regressions</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Phase-wise Scoring & Insights</h2>
+        <div class="muted">Scores for Inform, Optimize, Operate with strengths and opportunities.</div>
+        <table style="margin-top:8px;">
+          <thead><tr><th>Phase</th><th>Score</th><th>Strengths</th><th>Opportunities</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Inform</td>
+              <td>70/100</td>
+              <td>Baseline dashboards; basic showback</td>
+              <td>Tag compliance to 95%+; anomaly workflows</td>
+            </tr>
+            <tr>
+              <td>Optimize</td>
+              <td>61/100</td>
+              <td>Rightsizing started; budgets set</td>
+              <td>Commitment policy; automate cleanup</td>
+            </tr>
+            <tr>
+              <td>Operate</td>
+              <td>67/100</td>
+              <td>Exec scorecard; regular reviews</td>
+              <td>Policy-as-code; chargeback adoption</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card panel">
+        <h2>Benchmark: Current vs Target</h2>
+        <div class="muted">Maturity placement (Crawl, Walk, Run) and target benchmark.</div>
+        <svg class="curve" viewBox="0 0 600 220" aria-label="Maturity curve">
+          <line x1="40" y1="180" x2="560" y2="180" stroke="#2a2f3b" stroke-width="1" />
+          <path d="M 40 170 C 220 50, 380 50, 560 170" fill="none" stroke="#3a4152" stroke-width="2" />
+          <g fill="#9aa3b2" font-size="12">
+            <text x="40" y="200">Crawl</text>
+            <text x="300" y="200" text-anchor="middle">Walk</text>
+            <text x="560" y="200" text-anchor="end">Run</text>
+          </g>
+          <!-- Current (Walk) -->
+          <circle cx="300" cy="115" r="8" fill="#5ad1aa" stroke="#0b0c10" stroke-width="2" />
+          <!-- Target (Run) -->
+          <circle cx="560" cy="170" r="8" fill="#6fe39a" stroke="#0b0c10" stroke-width="2" />
+        </svg>
+        <table>
+          <thead><tr><th>Area</th><th>Current</th><th>Target</th><th>Gap</th></tr></thead>
+          <tbody>
+            <tr><td>Inform</td><td>70</td><td>80</td><td><div class="bar"><span style="width:50%"></span></div></td></tr>
+            <tr><td>Optimize</td><td>61</td><td>78</td><td><div class="bar"><span style="width:65%"></span></div></td></tr>
+            <tr><td>Operate</td><td>67</td><td>80</td><td><div class="bar"><span style="width:60%"></span></div></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="grid-column:span 12;">
+        <h2>Next Steps</h2>
+        <div class="grid-2">
+          <div class="card" style="padding:12px"><strong>1) Finalize tagging policy v1</strong><div class="muted">Agree mandatory keys/values, lineage; communicate and publish.</div></div>
+          <div class="card" style="padding:12px"><strong>2) Improve tag compliance to 95%+</strong><div class="muted">Backfill strategy + CI checks; weekly compliance report.</div></div>
+          <div class="card" style="padding:12px"><strong>3) Build Finance/Eng dashboards</strong><div class="muted">Forecast vs actuals, unit costs, waste, savings realized.</div></div>
+          <div class="card" style="padding:12px"><strong>4) Establish budgets & alerts</strong><div class="muted">Team/unit budgets; variance and anomaly notifications.</div></div>
+          <div class="card" style="padding:12px"><strong>5) Rightsize top 20% workloads</strong><div class="muted">Utilization-driven; stage and roll progressively.</div></div>
+          <div class="card" style="padding:12px"><strong>6) Launch RI/SP coverage policy</strong><div class="muted">Coverage targets + purchase guardrails; renewals process.</div></div>
+          <div class="card" style="padding:12px"><strong>7) Automate idle/orphan cleanup</strong><div class="muted">Detect unattached volumes, snapshots, IPs; scheduled cleanup.</div></div>
+          <div class="card" style="padding:12px"><strong>8) Define review cadence</strong><div class="muted">Monthly optimization review; exec scorecard; action register.</div></div>
+          <div class="card" style="padding:12px"><strong>9) Implement policy‑as‑code</strong><div class="muted">Tags/size/region/TTL enforced via CI/CD and guardrails.</div></div>
+          <div class="card" style="padding:12px"><strong>10) Introduce showback/chargeback</strong><div class="muted">Allocation model; unit costs; stakeholder reviews monthly.</div></div>
+          <div class="card" style="padding:12px"><strong>11) Forecasting & scenarios</strong><div class="muted">Top‑down + bottoms‑up forecasting; growth and risk scenarios.</div></div>
+          <div class="card" style="padding:12px"><strong>12) Operating runbook & RACI</strong><div class="muted">Document roles, SLAs, backlog grooming, and escalation paths.</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <button onclick="window.print()">Export PDF</button>
+        </div>
+      </section>
     </section>
   </main>
-  <footer class='brand-footer'>© Nichesoft • FinOps Services</footer>
+
+  <footer class="brand-footer">© Nichesoft • FinOps Health Check</footer>
 </body>
 </html>

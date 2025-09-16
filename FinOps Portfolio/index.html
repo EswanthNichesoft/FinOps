@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nichesoft FinOps Services</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <style>
+    :root { --border:#1f2330; --accent:#5ad1aa; --accent-2:#5aa8d1; }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    main{max-width:1200px;margin:24px auto;padding:0 16px;color:#e6e6e6}
+    .hero{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .hero h1{margin:0}
+    .muted{color:#9aa3b2}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 24px rgba(0,0,0,.35);padding:16px}
+    .pkg{grid-column:span 6;display:flex;flex-direction:column;gap:10px}
+    @media (max-width:900px){.pkg{grid-column:span 12}}
+    .btns{display:flex;gap:8px;flex-wrap:wrap}
+    a.btn{display:inline-block;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.04);color:#e6e6e6;text-decoration:none}
+    a.btn:hover{background:rgba(255,255,255,.08)}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:rgba(255,255,255,.02)}
+    .kpi .label{color:#9aa3b2;font-size:12px}
+    .kpi .value{font-weight:600;font-size:22px;margin-top:6px}
+  </style>
+</head>
+<body class="brand-bg">
+  <header class="brand-header">
+    <img src="../assets/logo.svg" alt="Nichesoft logo" />
+    <div class="brand-title">Nichesoft • FinOps Services</div>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Nichesoft FinOps Portfolio</h1>
+        <p class="muted">Explore our packaged offerings: rapid assessments, accelerated optimization, and ongoing FinOps operations.</p>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="label">Typical Savings (6–12 months)</div><div class="value">12–30%</div></div>
+        <div class="kpi"><div class="label">Forecast Accuracy Target</div><div class="value">±5–8%</div></div>
+        <div class="kpi"><div class="label">Tag Compliance Target</div><div class="value">95%+</div></div>
+        <div class="kpi"><div class="label">Commitment Coverage</div><div class="value">70–85%</div></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card pkg">
+        <h2>FinOps Health Check</h2>
+        <p class="muted">Quick, high‑level assessment of cloud financial management practices with a concise roadmap and prioritized actions.</p>
+        <ul class="muted" style="margin:0;padding-left:18px">
+          <li>Roadmap across Inform / Optimize / Operate</li>
+          <li>Phase scores and key insights</li>
+          <li>Maturity benchmark vs target</li>
+        </ul>
+        <div class="btns">
+          <a class="btn" href="../FinOps Health check/index.html">Open</a>
+        </div>
+      </article>
+
+      <article class="card pkg">
+        <h2>FinOps Advanced Health Check</h2>
+        <p class="muted">Comprehensive analysis with maturity benchmarking and domain‑level scoring across Visibility, Optimization, Governance.</p>
+        <ul class="muted" style="margin:0;padding-left:18px">
+          <li>Maturity curve and domain scores</li>
+          <li>Current state assessment and gaps</li>
+          <li>Prioritized recommendations</li>
+        </ul>
+        <div class="btns">
+          <a class="btn" href="../FinOps Advanced Health check/index.html">Open</a>
+        </div>
+      </article>
+
+      <article class="card pkg">
+        <h2>FinOps Accelerator</h2>
+        <p class="muted">Assessment + implementation sprint to deliver savings quickly via rightsizing, commitments, dashboards and guardrails.</p>
+        <ul class="muted" style="margin:0;padding-left:18px">
+          <li>Actionable optimization playbook</li>
+          <li>Persona‑based visualization dashboards</li>
+          <li>90‑day roadmap with weekly plan</li>
+        </ul>
+        <div class="btns">
+          <a class="btn" href="../FinOps Accelerator/index.html">Open</a>
+        </div>
+      </article>
+
+      <article class="card pkg">
+        <h2>FinOps as a Service (FOaaS)</h2>
+        <p class="muted">Dedicated FinOps operating model: continuous optimization, governance, reporting, and strategic planning.</p>
+        <ul class="muted" style="margin:0;padding-left:18px">
+          <li>Financial transparency & exec reporting</li>
+          <li>Ongoing optimization & governance</li>
+          <li>Monthly and quarterly review subpages</li>
+        </ul>
+        <div class="btns">
+          <a class="btn" href="../FinOps as a Service (FOaaS)/index.html">Open</a>
+          <a class="btn" href="../FinOps as a Service (FOaaS)/reviews/monthly.html">Monthly Review</a>
+          <a class="btn" href="../FinOps as a Service (FOaaS)/reviews/quarterly.html">Quarterly Review</a>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="brand-footer">© Nichesoft • FinOps Portfolio</footer>
+</body>
+</html>
+
+
